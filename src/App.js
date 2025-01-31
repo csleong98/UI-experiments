@@ -1,17 +1,15 @@
 import React from "react";
 import Dropdown from "./components/Dropdown";
+import Card from "./components/Card";
+import Button from "./components/Button";
 
 function App() {
   return (
     <div className="min-h-screen bg-slate-100 p-8">
-      {/* Test element to verify Tailwind */}
-      <div className="mb-8 bg-green-500 text-white p-4 rounded-lg shadow-lg text-center">
-        If you see this with green background, Tailwind is working!
-      </div>
-      
-      {/* Dropdown container */}
-      <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg p-6">
-        <Dropdown />
+      <div className="grid grid-cols-2 gap-4">
+        {/* Dropdown container */}
+        <Card title="Dropdown" description="Description" component={<Dropdown />} />
+        <Card title="Button" description="Description" component={<Button variant="secondary" size="sm" children="Click me" />} />
       </div>
     </div>
   );
