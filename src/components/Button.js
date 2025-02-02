@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Button({
     children, 
@@ -9,16 +10,16 @@ export default function Button({
 }) {
     // Rename these objects to avoid naming conflicts with props
     const variantStyles = {
-        primary: "bg-blue-500 text-white hover:bg-blue-600",
-        secondary: "bg-gray-500 text-white hover:bg-gray-600",
-        success: "bg-green-500 text-white hover:bg-green-600",
-        danger: "bg-red-500 text-white hover:bg-red-600",
-        warning: "bg-yellow-500 text-white hover:bg-yellow-600",
-        info: "bg-blue-500 text-white hover:bg-blue-600",
-        tonal: "bg-gray-100 text-gray-900 hover:bg-gray-200",
-        outline: "bg-white text-gray-900 border border-gray-300 hover:bg-gray-50",
-        ghost: "bg-transparent text-gray-900 hover:bg-gray-100",
-        link: "bg-transparent text-blue-600 hover:underline"
+        primary: "bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700",
+        secondary: "bg-gray-500 text-white hover:bg-gray-600 active:bg-gray-700",
+        success: "bg-green-500 text-white hover:bg-green-600 active:bg-green-700",
+        danger: "bg-red-500 text-white hover:bg-red-600 active:bg-red-700",
+        warning: "bg-yellow-500 text-white hover:bg-yellow-600 active:bg-yellow-700",
+        info: "bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700",
+        tonal: "bg-gray-100 text-gray-900 hover:bg-gray-200 active:bg-gray-300",
+        outline: "bg-white text-gray-900 border border-gray-300 hover:bg-gray-50 active:bg-gray-100",
+        ghost: "bg-transparent text-gray-900 hover:bg-gray-100 active:bg-gray-200",
+        link: "bg-transparent text-blue-600 hover:underline active:text-blue-700"
     };
 
     const sizeStyles = {
@@ -33,12 +34,20 @@ export default function Button({
     } transition-colors duration-200`;
 
     return (
-        <button 
+        <motion.button 
             onClick={onClick} 
             className={className}
             disabled={disabled}
+            whileTap={{ scale: 0.95 }}
+
+            // Adding smooth spring animation
+            transition={{
+                type: "spring",
+                stiffness: 700,
+                damping: 10
+            }}
         >
             {children}
-        </button>
+        </motion.button>
     );
 }
